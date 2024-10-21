@@ -236,9 +236,9 @@ top: 3px;
   .checkbox-input {
     position: relative;
     top: 1px;
-    transform: scale(1); /* Increase size by 1.5x */
--webkit-transform: scale(1); /* For older browsers */
--moz-transform: scale(1);
+    transform: scale(0.8); 
+-webkit-transform: scale(0.8); 
+-moz-transform: scale(0.8);
     }
 
     #submitButton {
