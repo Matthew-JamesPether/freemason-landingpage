@@ -235,7 +235,7 @@ top: 3px;
 
   .checkbox-input {
     position: relative;
-    top: 0.4px;
+    top: 0px;
     transform: scale(0.7); 
 -webkit-transform: scale(0.7); 
 -moz-transform: scale(0.7);
