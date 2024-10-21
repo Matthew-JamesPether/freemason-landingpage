@@ -31,7 +31,7 @@ body {
 form {
   display: grid;   
   column-gap: 150px;               
-  grid-template-rows: 50% 50%;  
+  grid-template-rows: 50% 1fr;  
   grid-template-columns: 50% 1fr;                                    
 }
 
@@ -87,10 +87,6 @@ button {
   align-items: flex-start;
 }
 
-.radio-input {
-  margin-left: 12px;
-}
-
 .question {
   display: flex;
   justify-content: space-between;
@@ -99,8 +95,8 @@ button {
 }
 
 .radio-label {
-  border: solid salmon;
-  width: 50%;
+  /* border: solid salmon; */
+  width: 70%;
 }
 
 
@@ -167,12 +163,13 @@ button {
     width: 100%;
     margin: 0 auto;
     background-image: url(masonic_pic.jpg);
-    background-size: 30%;
+    background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
   }
 
   .header {
+    margin: 0px;
     text-align: center;
     padding: 0px 5px 0px 5px;
     font-size: 11px;
@@ -219,6 +216,10 @@ button {
 
   .textareas {
     font-size: 11px;
+  }
+
+  .radio-label {
+    width: 50%;
   }
 }
 
