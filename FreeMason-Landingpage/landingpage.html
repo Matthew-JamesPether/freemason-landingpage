@@ -58,13 +58,13 @@
             </div>
             <br />
             <div class="input-container">
-              <label for="phoneNum">Contact number: </label>
+              <label for="contactNum">Contact number: </label>
               <div>
                 <span>+27</span>
                 <input
                   class="contact-input"
-                  id="phoneNum"
-                  name="phoneNum"
+                  id="contactNum"
+                  name="contactNum"
                   type="tel"
                   autocomplete="tel"
                   placeholder="00-000-0000"
@@ -307,6 +307,25 @@
         checkbox2: false,
       };
 
+      document
+        .getElementById("contactNum")
+        .addEventListener("input", function (event) {
+          let input = event.target.value.replace(/\D/g, ""); // Remove any non-numeric characters
+          let formattedInput = "";
+
+          if (input.length > 0) {
+            formattedInput = input.substring(0, 2); // First two digits
+          }
+          if (input.length >= 3) {
+            formattedInput += "-" + input.substring(2, 5); // Add hyphen and next three digits
+          }
+          if (input.length >= 6) {
+            formattedInput += "-" + input.substring(5, 9); // Add hyphen and last four digits
+          }
+
+          event.target.value = formattedInput; // Set the formatted value
+        });
+
       // Function to handle radio button change
       const handleChange = (question, value) => {
         answers[question] = value;
@@ -329,34 +348,52 @@
           (checked) => checked === true
         );
 
-        console.log(allRadioYes + " radio");
-        console.log(allCheckboxChecked + " checked");
-
         // Display the button only if all radio buttons are "yes" and all checkboxes are checked
         const submitButton = document.getElementById("submitButton");
         if (!allRadioYes || !allCheckboxChecked) {
           submitButton.style.display = "none"; // Hide the button
         } else {
           submitButton.style.display = "block"; // Show the button
-
-          const slideMessage = document.getElementById("slideMessage");
-
-          // Function to show and hide the sliding message
-          function showSlideMessage() {
-            // Add the 'active' class to slide the message down
-            slideMessage.classList.add("active");
-
-            // Remove the message after 3 seconds (slide it back up)
-            setTimeout(() => {
-              slideMessage.classList.remove("active");
-            }, 3000); // Adjust time as needed
-          }
-
-          // Add an event listener to the button
-          submitButton.addEventListener("click", function () {
-            showSlideMessage();
-          });
         }
+      };
+
+      const handleSubmit = (event) => {
+        event.preventDefault();
+
+        const slideMessage = document.getElementById("slideMessage");
+
+        // Show the sliding message
+        slideMessage.classList.add("active");
+
+        // Remove the message after 3 seconds (slide it back up)
+        setTimeout(() => {
+          slideMessage.classList.remove("active");
+        }, 3000); // Adjust time as needed
+
+        // Get values from the input fields
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const contactNum = document.getElementById("contactNum").value;
+        const understanding = document.getElementById("understanding").value;
+        const futureTasks = document.getElementById("futureTasks").value;
+
+        // Store the data locally (you can change this to send it to a server if needed)
+        const formData = {
+          name,
+          email,
+          contactNum: `+27 ${contactNum}`, // Append +27 for South Africa's code
+          understanding,
+          futureTasks,
+        };
+
+        // Log the data to the console to verify it's being captured
+        console.log("Form Data:", formData);
+
+        // Clear the form after submission
+        document.getElementById("contactForm").reset();
+        
+        const submitButton = document.getElementById("submitButton");
+        submitButton.style.display = "none"
       };
 
       checkConditions();
