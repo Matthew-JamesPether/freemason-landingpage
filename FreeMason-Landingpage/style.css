@@ -232,7 +232,7 @@ span {
 
   .checkbox-input {
     position: relative;
-    top: -2px;
+    top: -5px;
     transform: scale(0.7);
     -webkit-transform: scale(0.7);
     -moz-transform: scale(0.7);
